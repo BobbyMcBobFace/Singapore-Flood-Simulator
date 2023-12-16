@@ -15,7 +15,8 @@ black = (0, 0, 0)
 green = (152,245,255)
 blue =  (69,139,0)
 
-# Set up the initial values and maximum values for the stats
+# Note to the autistic black yellow, set player water value to water_current and player food value to food_current
+
 water_current = 69
 water_max = 100
 
