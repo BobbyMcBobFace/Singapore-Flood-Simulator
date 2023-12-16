@@ -11,5 +11,5 @@ def display_background_image(image_path):
     canvas.pack()
     canvas.create_image(0, 0, anchor="nw", image=photo_image)
     root.mainloop()
-display_background_image("./popupcodes/hi.jpeg")
+display_background_image("map.map.PNG")
 
