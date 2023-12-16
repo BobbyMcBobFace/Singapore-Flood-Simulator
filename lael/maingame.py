@@ -1,31 +1,44 @@
-import pygame
-import sys
-pygame.init()
+import tkinter as tk
+from PIL import Image, ImageTk
 
-width = 700
-height = 550
+def on_button_click():
+    print("Button Clicked!")
 
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Window")
+def display_combined_map_and_button(map_image_path, button_image_path, button_x, button_y):
+    root = tk.Tk()
+    root.title("Combined Example")
 
-clock = pygame.time.Clock()  # Create a clock object to control the frame rate
+    # Load and resize the map image
+    map_image = Image.open(map_image_path)
+    map_image = map_image.resize((1000, 1000))
+    map_photo_image = ImageTk.PhotoImage(map_image)
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+    # Create a canvas for the map image
+    canvas = tk.Canvas(root, width=1000, height=1000)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=map_photo_image)
 
-    # Update game logic here
+    # Load and resize the button image
+    button_image = Image.open(button_image_path)
+    button_image = button_image.resize((70, 35))
+    button_photo_image = ImageTk.PhotoImage(button_image)
 
-    # Clear the screen
-    screen.fill((255, 255, 255))  # Fill the screen with a white color
+    # Create the button on the canvas with specified coordinates
+    button = tk.Button(root, image=button_photo_image, command=on_button_click, bd=0, highlightthickness=0)
+    canvas.create_window(button_x, button_y, anchor="center", window=button)
 
-    # Draw game elements here
+    root.mainloop()
 
-    pygame.display.update()
+# Provide paths to your image files
+map_image_path = "./popupcodes/hi.jpeg"
+button_image_path = "./popupcodes/Farm.png"
 
-    clock.tick(60)  # Cap the frame rate to 60 frames per second
+# Specify the initial coordinates for the button
+initial_button_x = 300
+initial_button_y = 500
+
+# Call the function to display the combined map and button with initial coordinates
+display_combined_map_and_button(map_image_path, button_image_path, initial_button_x, initial_button_y)
 
 
 

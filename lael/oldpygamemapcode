@@ -1,0 +1,55 @@
+import pygame
+import sys
+
+pygame.init()
+
+width = 700
+height = 550
+
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Window")
+
+clock = pygame.time.Clock()
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y, image):
+        super().__init__()
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+    def update(self):
+        # Update sprite logic here
+        pass
+
+# Load and resize the image
+image_path = "/Users/zacth/CodeDay-Project-/map.map.PNG"
+original_image = pygame.image.load(image_path)
+resized_image = pygame.transform.scale(original_image, (width, height))
+
+# Create the player sprite
+player = Player(width // 2, height // 2, resized_image)
+
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Update game logic here
+    all_sprites.update()
+
+    screen.fill((255, 255, 255))  # Clear the screen
+
+    # Draw all sprites, including the resized image
+    all_sprites.draw(screen)
+
+    pygame.display.flip()
+
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()
