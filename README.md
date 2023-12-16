@@ -1,1 +1,1 @@
-# CodeDay-Project-
+# CodeDay-Project-We are going to create a game which will reflect singapore in the future when issues related to climate change and our slef security are more pressing than ever. This game's main goal is to educate the public on issues that singapore is currently facing such as climatye change and self security. It will be based mainly on a 2D map page where icons will alert player that there is a problem with 
