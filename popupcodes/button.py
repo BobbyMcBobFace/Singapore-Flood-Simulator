@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import PhotoImage
+
 #new window
 def on_button_click():
     new_window = tk.Toplevel(root)
-    new_window.title("New Window")
+    new_window.title("Farm")
     label = tk.Label(new_window, text="Welcome to the farm!")
     label.pack(padx=20, pady=20)
-   
 
 
 #button

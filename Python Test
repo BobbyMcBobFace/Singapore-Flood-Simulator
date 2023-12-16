@@ -1,18 +1,318 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import PhotoImage
+
 #new window
 def on_button_click():
     new_window = tk.Toplevel(root)
-    new_window.title("New Window")
+    new_window.title("Farm")
     label = tk.Label(new_window, text="Welcome to the farm!")
     label.pack(padx=20, pady=20)
-   
 
 
 #button
 root = tk.Tk()
 root.title("Click here!")
-button = tk.Button(root, text="Error⚠️", command=on_button_click)
+button = tk.Button(root, image="C:\Users\User\OneDrive\Documents\hi.jpeg", command=on_button_click)
 button.pack(pady=10)
 root.mainloop()
+
+
+#IMAGE SECURED (apple0)
+from tkinter import Tk, Canvas, PhotoImage
+from PIL import Image, ImageTk
+
+def display_background_image(image_path):
+    root = Tk()
+    root.title("Background Image Example")
+    image = Image.open(image_path)
+    image = image.resize((800, 600))
+    photo_image = ImageTk.PhotoImage(image)
+    canvas = Canvas(root, width=800, height=600)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=photo_image)
+    root.mainloop()
+display_background_image("./popupcodes/aple.jpg")
+
+#IMAGE MAP
+from tkinter import Tk, Canvas, PhotoImage
+from PIL import Image, ImageTk
+
+def display_background_image(image_path):
+    root = Tk()
+    root.title("Background Image Example")
+    image = Image.open(image_path)
+    image = image.resize((800, 600))
+    photo_image = ImageTk.PhotoImage(image)
+    canvas = Canvas(root, width=800, height=600)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=photo_image)
+    root.mainloop()
+display_background_image("./popupcodes/hi.jpeg")
+
+
+#Button code
+import tkinter as tk
+def on_button_click():
+    print("Button Clicked!")
+root = tk.Tk()
+root.title("My First GUI")
+button = tk.Button(root, text="Click Me", command=on_button_click)
+button.pack(pady=10)
+root.mainloop()
+
+#Hitbox code
+import tkinter as tk
+
+def on_hitbox_click(event):
+    print("Hitbox Clicked!")
+root = tk.Tk()
+root.title("Hitbox Example")
+canvas = tk.Canvas(root, width=400, height=300, bg="white")
+canvas.pack()
+hitbox = canvas.create_rectangle(50, 50, 150, 150, fill="blue")
+canvas.tag_bind(hitbox, '<Button-1>', on_hitbox_click)
+root.mainloop()
+
+#HITBOX WITH MAP
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def display_background_image_with_hitbox(image_path):
+    def on_hitbox_click(event):
+        print("Hitbox Clicked!")
+
+    root = tk.Tk()
+    root.title("Combined Example")
+
+    # Load and resize the background image
+    image = Image.open(image_path)
+    image = image.resize((800, 600))
+    photo_image = ImageTk.PhotoImage(image)
+
+    # Create a canvas for the background image
+    canvas = tk.Canvas(root, width=800, height=600)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=photo_image)
+
+    # Create a rectangular hitbox on the canvas
+    hitbox = canvas.create_rectangle(50, 50, 150, 150, fill="blue")
+    
+    # Bind the click event to the hitbox
+    canvas.tag_bind(hitbox, '<Button-1>', on_hitbox_click)
+
+    root.mainloop()
+
+# Use the same image path you used before
+display_background_image_with_hitbox("./popupcodes/hi.jpeg")
+
+#BUTTON + MAP
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def display_image_and_button(image_path):
+    def on_button_click():
+        print("Button Clicked!")
+
+    root = tk.Tk()
+    root.title("Combined Example")
+
+    # Load and resize the background image
+    image = Image.open(image_path)
+    image = image.resize((800, 600))
+    photo_image = ImageTk.PhotoImage(image)
+
+    # Create a canvas for the background image
+    canvas = tk.Canvas(root, width=800, height=600)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=photo_image)
+
+    # Create a button on the canvas
+    button = tk.Button(root, text="Click Me", command=on_button_click)
+    canvas.create_window(400, 300, anchor="center", window=button)
+
+    root.mainloop()
+
+# Use the same image path you used before
+display_image_and_button("./popupcodes/hi.jpeg")
+
+
+#BUTTON MAP WITH COORDINATES
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def display_image_and_button(image_path):
+    def on_button_click():
+        print("Button Clicked!")
+
+    root = tk.Tk()
+    root.title("Combined Example")
+
+    # Load and resize the background image
+    image = Image.open(image_path)
+    image = image.resize((800, 800))
+    photo_image = ImageTk.PhotoImage(image)
+
+    # Create a canvas for the background image
+    canvas = tk.Canvas(root, width=800, height=800)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=photo_image)
+
+    # Specify new coordinates for the button
+    button_x = 200
+    button_y = 400
+
+    # Create a button on the canvas with updated coordinates
+    button = tk.Button(root, text="Click Me", command=on_button_click)
+    canvas.create_window(button_x, button_y, anchor="center", window=button)
+
+    root.mainloop()
+
+# Use the same image path you used before
+display_image_and_button("./popupcodes/hi.jpeg")
+
+
+# Farm button
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def on_button_click():
+    print("Button Clicked!")
+root = tk.Tk()
+root.title("Button with Image")
+image_path = "./popupcodes/Farm.png"  
+image = Image.open(image_path)
+image = image.resize((100, 50))  
+photo_image = ImageTk.PhotoImage(image)
+button = tk.Button(root, image=photo_image, command=on_button_click, bd=0, highlightthickness=0)
+
+button.pack(pady=10)
+
+root.mainloop()
+
+
+#WATERPUMP BUTTON
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def on_button_click():
+    print("Button Clicked!")
+root = tk.Tk()
+root.title("Button with Image")
+image_path = "./popupcodes/WaterPump.png"  
+image = Image.open(image_path)
+image = image.resize((100, 50))  
+photo_image = ImageTk.PhotoImage(image)
+button = tk.Button(root, image=photo_image, command=on_button_click, bd=0, highlightthickness=0)
+
+button.pack(pady=10)
+
+root.mainloop()
+
+
+
+#FARM BUTTON + MAP
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def on_button_click():
+    print("Button Clicked!")
+
+def display_combined_map_and_button(map_image_path, button_image_path):
+    root = tk.Tk()
+    root.title("Combined Example")
+
+    # Load and resize the map image
+    map_image = Image.open(map_image_path)
+    map_image = map_image.resize((1000, 1000))
+    map_photo_image = ImageTk.PhotoImage(map_image)
+
+    # Create a canvas for the map image
+    canvas = tk.Canvas(root, width=1000, height=1000)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=map_photo_image)
+
+    # Load and resize the button image
+    button_image = Image.open(button_image_path)
+    button_image = button_image.resize((70, 35))
+    button_photo_image = ImageTk.PhotoImage(button_image)
+
+    # Create the button on the canvas
+    button = tk.Button(root, image=button_photo_image, command=on_button_click, bd=0, highlightthickness=0)
+    canvas.create_window(500, 375, anchor="center", window=button)
+
+    root.mainloop()
+
+# Provide paths to your image files
+map_image_path = "./popupcodes/hi.jpeg"
+button_image_path = "./popupcodes/Farm.png"
+
+# Call the function to display the combined map and button
+display_combined_map_and_button(map_image_path, button_image_path)
+
+#WINDOW + BUTTON
+import tkinter as tk
+
+def open_new_window():
+    new_window = tk.Toplevel(root)
+    new_window.title("New Window")
+    label = tk.Label(new_window, text="This is a new window!")
+    label.pack()
+
+# Create the main window
+root = tk.Tk()
+root.title("Main Window")
+
+# Create a button that triggers the new window
+button = tk.Button(root, text="Open New Window", command=open_new_window)
+button.pack()
+
+# Start the main event loop
+root.mainloop()
+
+
+
+
+
+#FARM BUTTON + MAP + COORDS
+import tkinter as tk
+from PIL import Image, ImageTk
+
+def on_button_click():
+    print("Button Clicked!")
+
+def display_combined_map_and_button(map_image_path, button_image_path, button_x, button_y):
+    root = tk.Tk()
+    root.title("Combined Example")
+
+    # Load and resize the map image
+    map_image = Image.open(map_image_path)
+    map_image = map_image.resize((1000, 1000))
+    map_photo_image = ImageTk.PhotoImage(map_image)
+
+    # Create a canvas for the map image
+    canvas = tk.Canvas(root, width=1000, height=1000)
+    canvas.pack()
+    canvas.create_image(0, 0, anchor="nw", image=map_photo_image)
+
+    # Load and resize the button image
+    button_image = Image.open(button_image_path)
+    button_image = button_image.resize((70, 35))
+    button_photo_image = ImageTk.PhotoImage(button_image)
+
+    # Create the button on the canvas with specified coordinates
+    button = tk.Button(root, image=button_photo_image, command=on_button_click, bd=0, highlightthickness=0)
+    canvas.create_window(button_x, button_y, anchor="center", window=button)
+
+    root.mainloop()
+
+# Provide paths to your image files
+map_image_path = "./popupcodes/hi.jpeg"
+button_image_path = "./popupcodes/Farm.png"
+
+# Specify the initial coordinates for the button
+initial_button_x = 300
+initial_button_y = 500
+
+# Call the function to display the combined map and button with initial coordinates
+display_combined_map_and_button(map_image_path, button_image_path, initial_button_x, initial_button_y)
