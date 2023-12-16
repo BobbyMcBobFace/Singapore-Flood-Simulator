@@ -25,10 +25,10 @@ bar_height = 20
 font = ("Arial", 16)
 
 # Initial water status
-water_current = 69
+water_current = 50
 water_max = 100
 
-food_current = 69
+food_current = 50
 food_max = 100
 
 # Function to draw the water status bar and label
@@ -65,7 +65,7 @@ def update_statuses():
 # Function to handle button clicks
 def on_button_click(background_image_path):
     new_window = tk.Toplevel(root)
-    new_window.title("New Window")
+    new_window.title("Tasks")
 
     # Load and resize the background image for the button
     background_image = Image.open(background_image_path)
