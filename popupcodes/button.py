@@ -458,4 +458,5 @@ score_label = Label(root, text=f"Score: {score}", font=("Arial", 16), bg="white"
 score_label_id = canvas.create_window(10, 10, anchor="nw", window=score_label)
 
 root.mainloop()
-
+aegerag
+  

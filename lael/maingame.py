@@ -1,3 +1,94 @@
+from tkinter import Tk, Canvas
+from PIL import Image, ImageTk
+
+class StaticImage:
+    def __init__(self, canvas, image_path, initial_x, initial_y, size=(200, 200)):
+        self.canvas = canvas
+        self.image = Image.open(image_path)
+        self.image = self.image.resize(size)
+        self.photo_image = ImageTk.PhotoImage(self.image)
+        self.image_id = canvas.create_image(initial_x, initial_y, anchor="nw", image=self.photo_image)
+
+class DraggableImage:
+    def __init__(self, canvas, image_path, initial_x, initial_y, size=(200, 200)):
+        self.canvas = canvas
+        self.image = Image.open(image_path)
+        self.image = self.image.resize(size)
+        self.photo_image = ImageTk.PhotoImage(self.image)
+        self.image_id = canvas.create_image(initial_x, initial_y, anchor="nw", image=self.photo_image)
+
+        # Bind mouse events for dragging
+        canvas.tag_bind(self.image_id, "<ButtonPress-1>", self.on_press)
+        canvas.tag_bind(self.image_id, "<B1-Motion>", self.on_drag)
+
+        self.last_x = 0
+        self.last_y = 0
+
+    def on_press(self, event):
+        self.last_x = event.x
+        self.last_y = event.y
+
+    def on_drag(self, event):
+        delta_x = event.x - self.last_x
+        delta_y = event.y - self.last_y
+        self.canvas.move(self.image_id, delta_x, delta_y)
+        self.last_x = event.x
+        self.last_y = event.y
+
+def display_combined_images(static_image_paths, draggable_image_paths):
+    root = Tk()
+    root.title("Combined Image Example")
+
+    canvas = Canvas(root, width=900, height=750)
+    canvas.pack()
+
+    # Create StaticImage instances for each image
+    static_image1 = StaticImage(canvas, static_image_paths[0], 150, 500)
+    static_image2 = StaticImage(canvas, static_image_paths[1], 300, 500)
+    static_image3 = StaticImage(canvas, static_image_paths[2], 450, 500)
+
+    # Create DraggableImage instances for each image
+    draggable_image1 = DraggableImage(canvas, draggable_image_paths[0], 300, 100)
+    draggable_image2 = DraggableImage(canvas, draggable_image_paths[1], 450, 100)
+    draggable_image3 = DraggableImage(canvas, draggable_image_paths[2], 150, 100)
+
+    root.mainloop()
+
+# Provide paths to your image files
+static_image_paths = ["./popupcodes/strawpot.png", "./popupcodes/applepot.png", "./popupcodes/orangepot.png"]
+draggable_image_paths = ["./popupcodes/StrawSeeds.png", "./popupcodes/appleseeds.png", "./popupcodes/orangeseeds.png"]
+
+# Call the function to display both static and draggable images on one screen
+display_combined_images(static_image_paths, draggable_image_paths)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import tkinter as tk
 from PIL import Image, ImageTk
 import pygame
