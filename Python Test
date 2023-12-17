@@ -2568,8 +2568,7 @@ canvas.tag_bind(hitbox1, "<B1-Motion>", lambda event: on_drag(event, hitbox1))
 # Make the hitbox draggable
 last_x, last_y = 0, 0
 score = 0
-
-# Create a label for the scoreboard
+# Create a label for the scoreboardsf
 score_label = Label(root, text=f"Score: {score}", font=("Arial", 16), bg="white")
 score_label_id = canvas.create_window(10, 10, anchor="nw", window=score_label)
 
