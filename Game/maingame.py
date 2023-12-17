@@ -150,7 +150,7 @@ second_button_image = second_button_image.resize((40, 40))
 second_button_photo_image = ImageTk.PhotoImage(second_button_image)
 
 # Create the second button on the canvas with specified coordinates
-second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\lael\\Water_pump_minigame"), bd=0, highlightthickness=0)
+second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 second_button_x = 330
 second_button_y = 390
 canvas.create_window(second_button_x, second_button_y, anchor="center", window=second_button)
@@ -186,7 +186,7 @@ fifth_button_image = fifth_button_image.resize((40, 40))
 fifth_button_photo_image = ImageTk.PhotoImage(fifth_button_image)
 
 # Create the fifth button on the canvas with specified coordinates
-fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\lael\\Water_pump_minigame"), bd=0, highlightthickness=0)
+fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 water_current = 55
 fifth_button_x = 520  # Adjust the x-coordinate as needed
 fifth_button_y = 410  # Adjust the y-coordinate as needed
@@ -199,7 +199,7 @@ sixth_button_image = sixth_button_image.resize((40, 40))
 sixth_button_photo_image = ImageTk.PhotoImage(sixth_button_image)
 
 # Create the sixth button on the canvas with specified coordinates
-sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\lael\\Water_pump_minigame"), bd=0, highlightthickness=0)
+sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 sixth_button_x = 550  # Adjust the x-coordinate as needed
 sixth_button_y = 600  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
