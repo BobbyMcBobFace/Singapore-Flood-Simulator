@@ -5,7 +5,7 @@ import threading
 import subprocess  # Import subprocess module
 
 # Initialize Pygame
-pygame.init()
+pygame.init()   
 
 # Set up display
 width, height = 1000, 1000
@@ -187,6 +187,7 @@ fifth_button_photo_image = ImageTk.PhotoImage(fifth_button_image)
 
 # Create the fifth button on the canvas with specified coordinates
 fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "C:\\Users\\zacth\\CodeDay-Project-\\lael\\Water_pump_minigame"), bd=0, highlightthickness=0)
+water_current = 55
 fifth_button_x = 520  # Adjust the x-coordinate as needed
 fifth_button_y = 410  # Adjust the y-coordinate as needed
 canvas.create_window(fifth_button_x, fifth_button_y, anchor="center", window=fifth_button)
