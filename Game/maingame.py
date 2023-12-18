@@ -87,8 +87,6 @@ def on_button_click(background_image_path, program_path):
     background_label = tk.Label(new_window, image=background_photo_image)
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-    # Keep a reference to the image to prevent garbage collection
-    new_window.background_photo_image = background_photo_image
 
     # Run the external Python program when the water button is clicked
     if program_path:
