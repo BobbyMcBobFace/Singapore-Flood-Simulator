@@ -2,7 +2,10 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import pygame
 import threading
-import subprocess  # Import subprocess module
+import subprocess
+import time
+import tkinter.messagebox
+
 
 # Initialize Pygame
 pygame.init()   
@@ -142,7 +145,7 @@ button_photo_image = ImageTk.PhotoImage(button_image)
 
 # Create the first button on the canvas with specified coordinates
 first_button = tk.Button(root, image=button_photo_image, command=lambda: on_button_click("./popupcodes/Farm.png", "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
-first_button_x = 200
+first_button_x = 200  
 first_button_y = 500
 canvas.create_window(first_button_x, first_button_y, anchor="center", window=first_button)
 
