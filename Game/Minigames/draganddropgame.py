@@ -19,17 +19,18 @@ homes = []
 def generate_random_color():
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-# Create homes
+# Create homes with increased spacing
 home_colors = [generate_random_color() for _ in range(3)]
+spacing = 100  # Adjust the spacing between baskets
 for i, color in enumerate(home_colors):
     w = 30
     h = 30
-    x = SCREEN_WIDTH // 2 - (len(home_colors) * w + (len(home_colors) - 1) * 80) // 2 + i * (w + 80)
+    x = spacing + i * (w + spacing)
     y = SCREEN_HEIGHT - 50  # Centered at the bottom
     home_rect = pygame.Rect(x, y, w, h)
     homes.append((home_rect, color))
 
-# Create colored boxes with matching home colors
+# Colored boxes with matching home colors
 for i in range(3):
     x = random.randint(50, 700)
     y = random.randint(50, 350)
@@ -37,7 +38,7 @@ for i in range(3):
     h = 50
     home_color = home_colors[i]
     box_rect = pygame.Rect(x, y, w, h)
-    box_color = home_color  # Use home color as the box color
+    box_color = home_color
     boxes.append((box_rect, box_color))
 
 # You win screen
@@ -45,31 +46,25 @@ font = pygame.font.Font(None, 36)
 you_win_text = font.render("You Win!", True, (0, 0, 0))  # Change color to black
 you_win_rect = you_win_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
 
-# Overlay images for each box
-box_overlay_images = [pygame.image.load('photos\\appleseeds.sprite.png').convert_alpha(),
-                      pygame.image.load('photos\\orangeseeds.sprite.png').convert_alpha(),
-                      pygame.image.load('photos\\strawberryseeds.sprite.png').convert_alpha()]
+# Load overlay images for each box
+overlay_images = []
+for img_path in ['photos\\appleseeds.sprite.png', 'photos\\orangeseeds.sprite.png', 'photos\\strawberryseeds.sprite.png']:
+    try:
+        img = pygame.image.load(img_path).convert_alpha()
+        overlay_images.append(pygame.transform.scale(img, (210, 210)))  # Adjust the size as needed
+        print(f"Loaded image: {img_path}")
+    except pygame.error as e:
+        print(f"Error loading image '{img_path}': {e}")
 
-# Scale box overlay images to match box size
-box_overlay_images = [pygame.transform.scale(img, (210, 210)) for img in box_overlay_images]
-
-# Calculate offset for centering box overlays
-box_overlay_offsets = [(box_rect.width - box_overlay_images[i].get_width()) // 2,
-                       (box_rect.height - box_overlay_images[i].get_height()) // 2]
-
-
-
-
-
-
-# Overlay images for each basket
-basket_overlay_images = [pygame.image.load('photos\\applepot.sprite.png').convert_alpha(),
-                         pygame.image.load('photos\\orangepot.sprite.png').convert_alpha(),
-                         pygame.image.load('photos\\strawberrypot.sprite.png').convert_alpha()]
-
-# Scale basket overlay images to the desired size
-basket_overlay_size = (200, 200)
-basket_overlay_images = [pygame.transform.scale(img, basket_overlay_size) for img in basket_overlay_images]
+# Load overlay images for each basket
+basket_overlay_images = []
+for img_path in ['photos\\applepot.sprite.png', 'photos\\orangepot.sprite.png', 'photos\\strawberrypot.sprite.png']:
+    try:
+        img = pygame.image.load(img_path).convert_alpha()
+        basket_overlay_images.append(pygame.transform.scale(img, (200, 200)))  # Adjust the size as needed
+        print(f"Loaded image: {img_path}")
+    except pygame.error as e:
+        print(f"Error loading image '{img_path}': {e}")
 
 run = True
 while run:
@@ -123,9 +118,8 @@ while run:
         pygame.draw.rect(screen, box_color, box_rect)
 
     # Draw overlay images on top of boxes
-    for (box_rect, _), overlay_image, overlay_offset in zip(boxes, box_overlay_images, box_overlay_offsets):
+    for (box_rect, _), overlay_image in zip(boxes, overlay_images):
         overlay_rect = overlay_image.get_rect(center=box_rect.center)
-        overlay_rect.topleft = (box_rect.left + box_overlay_offsets[0], box_rect.top + box_overlay_offsets[1])
         screen.blit(overlay_image, overlay_rect.topleft)
 
     # Draw overlay images on top of baskets
