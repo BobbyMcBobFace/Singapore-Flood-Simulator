@@ -51,7 +51,7 @@ overlay_images = [pygame.image.load('photos\\appleseeds.sprite.png').convert_alp
                   pygame.image.load('photos\\strawberryseeds.sprite.png').convert_alpha()]
 
 # Scale overlay images to match box size
-overlay_images = [pygame.transform.scale(img, (100, 100)) for img in overlay_images]
+overlay_images = [pygame.transform.scale(img, (270, 270)) for img in overlay_images]
 
 run = True
 while run:
@@ -96,7 +96,7 @@ while run:
     # Draw background
     screen.fill("white")
 
-    # Draw homes
+    # Draw homes    
     for home_rect, color in homes:
         pygame.draw.rect(screen, color, home_rect)
 
@@ -107,6 +107,9 @@ while run:
     # Draw overlay images on top of boxes
     for (box_rect, _), overlay_image in zip(boxes, overlay_images):
         overlay_rect = box_rect.copy()  # Create a copy of the box rect for the overlay
+        overlay_rect.width = 270
+        overlay_rect.height = 270
+        overlay_rect.center = box_rect.center
         screen.blit(overlay_image, overlay_rect.topleft)
 
     # Check if all boxes are in their correct homes (win condition)
