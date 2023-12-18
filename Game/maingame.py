@@ -1,11 +1,10 @@
 import tkinter as tk
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import pygame
 import threading
 import subprocess
 import time
-import tkinter.messagebox
-
 
 # Initialize Pygame
 pygame.init()   
@@ -47,6 +46,9 @@ def draw_water_status():
     # Display the water status label
     water_label.config(text="Water: {}/{}".format(water_current, water_max))
 
+    # Schedule the function to run again after 100 milliseconds
+    root.after(100, draw_water_status)
+
 # Function to draw the food status bar and label
 def draw_food_status():
     # Draw the food stat bar at the top
@@ -56,18 +58,20 @@ def draw_food_status():
     # Display the food status label
     food_label.config(text="Food: {}/{}".format(food_current, food_max))
 
+    # Schedule the function to run again after 100 milliseconds
+    root.after(100, draw_food_status)
+
 # Main game loop
 def update_statuses():
-    while True:
-        # Update the water and food status bars
-        draw_water_status()
-        draw_food_status()
+    # Initial call to start the loop
+    draw_water_status()
+    draw_food_status()
 
-        # Update the Tkinter window
-        root.update()
+    # Cap the frame rate
+    pygame.time.Clock().tick(30)
 
-        # Cap the frame rate
-        pygame.time.Clock().tick(30)
+    # Schedule the function to run again after 100 milliseconds
+    root.after(100, update_statuses)
 
 # Function to handle button clicks
 def on_button_click(background_image_path, program_path):
@@ -136,6 +140,36 @@ water_label.place(x=10, y=10)
 
 food_label = tk.Label(root, text="Food: {}/{}".format(food_current, food_max), font=font)
 food_label.place(x=10, y=40)
+
+
+# Counter and timestamp variables for tracking Escape key presses
+escape_press_count = 0
+last_escape_press_time = 0
+
+# Function to handle Escape key presses
+def on_escape_press(event):
+    global escape_press_count, last_escape_press_time
+
+    current_time = time.time()
+
+    # Check if the last Escape press was within a short time frame
+    if current_time - last_escape_press_time < 1:
+        escape_press_count += 1
+    else:
+        escape_press_count = 1  # Reset the count if it's been too long
+
+    last_escape_press_time = current_time
+
+    # Check if Escape key is pressed three times in quick succession
+    if escape_press_count == 3:
+        # Ask the user if they want to close the program
+        result = messagebox.askquestion("Exit", "Do you want to close the program?")
+        if result == "yes":
+            root.destroy()  # Close the Tkinter window
+
+# Bind the Escape key to the callback function
+root.bind('<Escape>', on_escape_press)
+
 
 # Load and resize the first button image
 button_image_path = "./popupcodes/Wheat.png"  # Change this path accordingly
@@ -209,10 +243,6 @@ sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: o
 sixth_button_x = 550  # Adjust the x-coordinate as needed
 sixth_button_y = 600  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
-
-# Start the main loop in a separate thread
-loop_thread = threading.Thread(target=update_statuses)
-loop_thread.start()
 
 # Start Tkinter main loop
 root.mainloop()
