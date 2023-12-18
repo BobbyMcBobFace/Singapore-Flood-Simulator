@@ -66,6 +66,10 @@ for img_path in ['photos\\applepot.sprite.png', 'photos\\orangepot.sprite.png', 
     except pygame.error as e:
         print(f"Error loading image '{img_path}': {e}")
 
+# Button to close the program
+close_button_rect = pygame.Rect(SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 + 50, 100, 40)
+close_button_color = (255, 0, 0)
+
 run = True
 while run:
     for event in pygame.event.get():
@@ -77,6 +81,10 @@ while run:
                 for num, (box_rect, _) in enumerate(boxes):
                     if box_rect.collidepoint(event.pos):
                         active_box = num
+
+                # Check if the close button is clicked
+                if close_button_rect.collidepoint(event.pos):
+                    run = False
 
         if event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1:
@@ -130,6 +138,12 @@ while run:
     # Check if all boxes are in their correct homes (win condition)
     if all(home_rect.colliderect(box_rect) and home_color == box_color for (box_rect, box_color), (home_rect, home_color) in zip(boxes, homes)):
         screen.blit(you_win_text, you_win_rect)
+
+        # Draw close button
+        pygame.draw.rect(screen, close_button_color, close_button_rect)
+        close_button_text = font.render("Close", True, (255, 255, 255))
+        close_button_text_rect = close_button_text.get_rect(center=close_button_rect.center)
+        screen.blit(close_button_text, close_button_text_rect.topleft)
 
     pygame.display.flip()
 
