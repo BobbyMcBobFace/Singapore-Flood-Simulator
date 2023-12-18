@@ -46,12 +46,30 @@ you_win_text = font.render("You Win!", True, (0, 0, 0))  # Change color to black
 you_win_rect = you_win_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
 
 # Overlay images for each box
-overlay_images = [pygame.image.load('photos\\appleseeds.sprite.png').convert_alpha(),
-                  pygame.image.load('photos\\orangeseeds.sprite.png').convert_alpha(),
-                  pygame.image.load('photos\\strawberryseeds.sprite.png').convert_alpha()]
+box_overlay_images = [pygame.image.load('photos\\appleseeds.sprite.png').convert_alpha(),
+                      pygame.image.load('photos\\orangeseeds.sprite.png').convert_alpha(),
+                      pygame.image.load('photos\\strawberryseeds.sprite.png').convert_alpha()]
 
-# Scale overlay images to match box size
-overlay_images = [pygame.transform.scale(img, (270, 270)) for img in overlay_images]
+# Scale box overlay images to match box size
+box_overlay_images = [pygame.transform.scale(img, (210, 210)) for img in box_overlay_images]
+
+# Calculate offset for centering box overlays
+box_overlay_offsets = [(box_rect.width - box_overlay_images[i].get_width()) // 2,
+                       (box_rect.height - box_overlay_images[i].get_height()) // 2]
+
+
+
+
+
+
+# Overlay images for each basket
+basket_overlay_images = [pygame.image.load('photos\\applepot.sprite.png').convert_alpha(),
+                         pygame.image.load('photos\\orangepot.sprite.png').convert_alpha(),
+                         pygame.image.load('photos\\strawberrypot.sprite.png').convert_alpha()]
+
+# Scale basket overlay images to the desired size
+basket_overlay_size = (200, 200)
+basket_overlay_images = [pygame.transform.scale(img, basket_overlay_size) for img in basket_overlay_images]
 
 run = True
 while run:
@@ -96,7 +114,7 @@ while run:
     # Draw background
     screen.fill("white")
 
-    # Draw homes    
+    # Draw homes
     for home_rect, color in homes:
         pygame.draw.rect(screen, color, home_rect)
 
@@ -105,11 +123,14 @@ while run:
         pygame.draw.rect(screen, box_color, box_rect)
 
     # Draw overlay images on top of boxes
-    for (box_rect, _), overlay_image in zip(boxes, overlay_images):
-        overlay_rect = box_rect.copy()  # Create a copy of the box rect for the overlay
-        overlay_rect.width = 270
-        overlay_rect.height = 270
-        overlay_rect.center = box_rect.center
+    for (box_rect, _), overlay_image, overlay_offset in zip(boxes, box_overlay_images, box_overlay_offsets):
+        overlay_rect = overlay_image.get_rect(center=box_rect.center)
+        overlay_rect.topleft = (box_rect.left + box_overlay_offsets[0], box_rect.top + box_overlay_offsets[1])
+        screen.blit(overlay_image, overlay_rect.topleft)
+
+    # Draw overlay images on top of baskets
+    for (home_rect, _), overlay_image in zip(homes, basket_overlay_images):
+        overlay_rect = overlay_image.get_rect(center=home_rect.center)
         screen.blit(overlay_image, overlay_rect.topleft)
 
     # Check if all boxes are in their correct homes (win condition)
