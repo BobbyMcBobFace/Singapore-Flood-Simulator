@@ -20,17 +20,17 @@ def generate_random_color():
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 # Create homes
-home_colors = [generate_random_color() for _ in range(5)]
+home_colors = [generate_random_color() for _ in range(3)]
 for i, color in enumerate(home_colors):
-    x = 20
-    y = 20 + i * 80
     w = 30
     h = 30
+    x = SCREEN_WIDTH // 2 - (len(home_colors) * w + (len(home_colors) - 1) * 80) // 2 + i * (w + 80)
+    y = SCREEN_HEIGHT - 50  # Centered at the bottom
     home = pygame.Rect(x, y, w, h)
     homes.append((home, color))
 
 # Create colored boxes with matching home colors
-for i in range(5):
+for i in range(3):
     x = random.randint(50, 700)
     y = random.randint(50, 350)
     w = 50
