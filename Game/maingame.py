@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageFilter
 import pygame
 import threading
 import subprocess
@@ -99,7 +99,7 @@ canvas = tk.Canvas(root, width=width, height=height)
 canvas.pack()
 
 # Load and resize the map image
-map_image_path = "./popupcodes/hi.jpeg"
+map_image_path = "photos\\Untitled.png"
 map_image = Image.open(map_image_path)
 map_image = map_image.resize((1000, 1000))
 map_photo_image = ImageTk.PhotoImage(map_image)
@@ -133,6 +133,7 @@ airport_photo_image = ImageTk.PhotoImage(airport_image)
 
 # Create a canvas for the third aesthetic picture
 airport_canvas = canvas.create_image(750, 500, anchor="center", image=airport_photo_image)
+
 
 # Display the water and food status labels
 water_label = tk.Label(root, text="Water: {}/{}".format(water_current, water_max), font=font)
@@ -172,10 +173,14 @@ root.bind('<Escape>', on_escape_press)
 
 
 # Load and resize the first button image
-button_image_path = "./popupcodes/Wheat.png"  # Change this path accordingly
-button_image = Image.open(button_image_path)
-button_image = button_image.resize((40, 40))
+# Load and resize the first button image
+button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
+button_image = Image.open(button_image_path).convert("RGBA")
+button_image = button_image.resize((60, 60))
 button_photo_image = ImageTk.PhotoImage(button_image)
+
+# ... Repeat the same process for other buttons
+
 
 # Create the first button on the canvas with specified coordinates
 first_button = tk.Button(root, image=button_photo_image, command=lambda: on_button_click("./popupcodes/Farm.png", "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
@@ -184,9 +189,9 @@ first_button_y = 500
 canvas.create_window(first_button_x, first_button_y, anchor="center", window=first_button)
 
 # Load and resize the second button image
-second_button_image_path = "./popupcodes/Water.png"
+second_button_image_path = "photos\\waterdam.sprite.png"
 second_button_image = Image.open(second_button_image_path)
-second_button_image = second_button_image.resize((40, 40))
+second_button_image = second_button_image.resize((60, 60))
 second_button_photo_image = ImageTk.PhotoImage(second_button_image)
 
 # Create the second button on the canvas with specified coordinates
@@ -196,9 +201,9 @@ second_button_y = 390
 canvas.create_window(second_button_x, second_button_y, anchor="center", window=second_button)
 
 # Load and resize the third button image
-third_button_image_path = "./popupcodes/Wheat.png"  # Change this path accordingly
+third_button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
 third_button_image = Image.open(third_button_image_path)
-third_button_image = third_button_image.resize((40, 40))
+third_button_image = third_button_image.resize((60, 60))
 third_button_photo_image = ImageTk.PhotoImage(third_button_image)
 
 # Create the third button on the canvas with specified coordinates
@@ -208,9 +213,9 @@ third_button_y = 420  # Adjust the y-coordinate as needed
 canvas.create_window(third_button_x, third_button_y, anchor="center", window=third_button)
 
 # Load and resize the fourth button image (duplicate of the first and third)
-fourth_button_image_path = "./popupcodes/Wheat.png"  # Change this path accordingly
+fourth_button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
 fourth_button_image = Image.open(fourth_button_image_path)
-fourth_button_image = fourth_button_image.resize((40, 40))
+fourth_button_image = fourth_button_image.resize((60, 60))
 fourth_button_photo_image = ImageTk.PhotoImage(fourth_button_image)
 
 # Create the fourth button on the canvas with specified coordinates
@@ -220,9 +225,9 @@ fourth_button_y = 530  # Adjust the y-coordinate as needed
 canvas.create_window(fourth_button_x, fourth_button_y, anchor="center", window=fourth_button)
 
 # Load and resize the fifth button image (duplicate of the second)
-fifth_button_image_path = "./popupcodes/Water.png"  # Change this path accordingly
+fifth_button_image_path = "photos\\waterdam.sprite.png"  # Change this path accordingly
 fifth_button_image = Image.open(fifth_button_image_path)
-fifth_button_image = fifth_button_image.resize((40, 40))
+fifth_button_image = fifth_button_image.resize((60, 60))
 fifth_button_photo_image = ImageTk.PhotoImage(fifth_button_image)
 
 # Create the fifth button on the canvas with specified coordinates
@@ -233,9 +238,9 @@ fifth_button_y = 410  # Adjust the y-coordinate as needed
 canvas.create_window(fifth_button_x, fifth_button_y, anchor="center", window=fifth_button)
 
 # Load and resize the sixth button image (duplicate of the second)
-sixth_button_image_path = "./popupcodes/Water.png"  # Change this path accordingly
+sixth_button_image_path = "photos\\waterdam.sprite.png"  # Change this path accordingly
 sixth_button_image = Image.open(sixth_button_image_path)
-sixth_button_image = sixth_button_image.resize((40, 40))
+sixth_button_image = sixth_button_image.resize((60, 60))
 sixth_button_photo_image = ImageTk.PhotoImage(sixth_button_image)
 
 # Create the sixth button on the canvas with specified coordinates
