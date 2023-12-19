@@ -135,9 +135,9 @@ while run:
         overlay_rect = overlay_image.get_rect(center=home_rect.center)
         screen.blit(overlay_image, overlay_rect.topleft)
 
-    # Check if all boxes are in their correct homes (win condition)
+ # Check if all boxes are in their correct homes (win condition)
     if all(home_rect.colliderect(box_rect) and home_color == box_color for (box_rect, box_color), (home_rect, home_color) in zip(boxes, homes)):
-        screen.blit(you_win_text, you_win_rect)
+        run = False  # Player wins the game
 
         # Draw close button
         pygame.draw.rect(screen, close_button_color, close_button_rect)
