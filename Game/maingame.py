@@ -38,10 +38,12 @@ food_max = 100
 
 # Function to draw the water status bar and label
 def draw_water_status():
-    # Draw the water stat bar at the top
+    # Draw the water stat bar at the bottom
     bar_fill_width = int(bar_width * (water_current / water_max))
-    canvas.create_rectangle((width - bar_width) // 2, 10, (width - bar_width) // 2 + bar_fill_width, 10 + bar_height,
-                            fill=green)
+    shift_amount = 20  # Adjust the amount you want to shift
+    start_x = (width - bar_width) // 2 - shift_amount
+    end_x = start_x + bar_fill_width
+    canvas.create_rectangle(start_x, 50, end_x, 50 + bar_height, fill=green)
 
     # Display the water status label
     water_label.config(text="Water: {}/{}".format(water_current, water_max))
@@ -51,16 +53,21 @@ def draw_water_status():
 
 # Function to draw the food status bar and label
 def draw_food_status():
-    # Draw the food stat bar at the top
+    # Draw the food stat bar at the bottom
     bar_fill_width = int(bar_width * (food_current / food_max))
-    canvas.create_rectangle((width - bar_width) // 2, 40, (width - bar_width) // 2 + bar_fill_width, 40 + bar_height,
-                            fill=blue)
+    shift_amount = 20  # Adjust the amount you want to shift
+    start_x = (width - bar_width) // 2 - shift_amount
+    end_x = start_x + bar_fill_width
+    canvas.create_rectangle(start_x, 90, end_x, 90 + bar_height, fill=blue)
 
     # Display the food status label
     food_label.config(text="Food: {}/{}".format(food_current, food_max))
 
     # Schedule the function to run again after 100 milliseconds
     root.after(100, draw_food_status)
+
+
+
 
 # Main game loop
 def update_statuses():
@@ -90,19 +97,13 @@ def run_food_minigame():
     # Open the food minigame script and wait for it to finish
     subprocess.call(["python", "Game\\Minigames\\farmSortingGame.py"])
 
-    # You can define a communication mechanism with the minigame script to
-    # obtain the result. For simplicity, we'll assume the result code is the
-    # amount to increase food.
     return 5
 
 def run_water_minigame():
     # Open the water minigame script and wait for it to finish
     subprocess.call(["python", "Game\\Minigames\\Water_pump_minigame"])
 
-    # You can define a communication mechanism with the minigame script to
-    # obtain the result. For simplicity, we'll assume the result code is the
-    # amount to increase water.
-    return 5
+    return 7
 
 def update_food(amount):
     # Update the food level in the main game
