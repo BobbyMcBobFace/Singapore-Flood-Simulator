@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk, ImageFilter
+from PIL import Image, ImageTk
 import pygame
-import threading
 import subprocess
 import time
 
@@ -74,18 +73,9 @@ def update_statuses():
     root.after(100, update_statuses)
 
 # Function to handle button clicks
-def on_button_click(background_image_path, program_path):
+def on_button_click(program_path):
     new_window = tk.Toplevel(root)
-    new_window.title("Tasks")
-
-    # Load and resize the background image for the button
-    background_image = Image.open(background_image_path)
-    background_image = background_image.resize((800, 600))
-    background_photo_image = ImageTk.PhotoImage(background_image)
-
-    # Create a label for the background image
-    background_label = tk.Label(new_window, image=background_photo_image)
-    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+ 
 
 
     # Run the external Python program when the water button is clicked
@@ -181,7 +171,7 @@ button_photo_image = ImageTk.PhotoImage(button_image)
 
 
 # Create the first button on the canvas with specified coordinates
-first_button = tk.Button(root, image=button_photo_image, command=lambda: on_button_click("./popupcodes/Farm.png", "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
+first_button = tk.Button(root, image=button_photo_image, command=lambda: on_button_click( "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
 first_button_x = 200  
 first_button_y = 500
 canvas.create_window(first_button_x, first_button_y, anchor="center", window=first_button)
@@ -193,7 +183,7 @@ second_button_image = second_button_image.resize((60, 60))
 second_button_photo_image = ImageTk.PhotoImage(second_button_image)
 
 # Create the second button on the canvas with specified coordinates
-second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
+second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 second_button_x = 330
 second_button_y = 390
 canvas.create_window(second_button_x, second_button_y, anchor="center", window=second_button)
@@ -205,7 +195,7 @@ third_button_image = third_button_image.resize((60, 60))
 third_button_photo_image = ImageTk.PhotoImage(third_button_image)
 
 # Create the third button on the canvas with specified coordinates
-third_button = tk.Button(root, image=third_button_photo_image, command=lambda: on_button_click("./popupcodes/Farm.png", "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
+third_button = tk.Button(root, image=third_button_photo_image, command=lambda: on_button_click("Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
 third_button_x = 240  # Adjust the x-coordinate as needed
 third_button_y = 420  # Adjust the y-coordinate as needed
 canvas.create_window(third_button_x, third_button_y, anchor="center", window=third_button)
@@ -217,7 +207,7 @@ fourth_button_image = fourth_button_image.resize((60, 60))
 fourth_button_photo_image = ImageTk.PhotoImage(fourth_button_image)
 
 # Create the fourth button on the canvas with specified coordinates
-fourth_button = tk.Button(root, image=fourth_button_photo_image, command=lambda: on_button_click("./popupcodes/Farm.png", "Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
+fourth_button = tk.Button(root, image=fourth_button_photo_image, command=lambda: on_button_click("Game\\Minigames\\farmSortingGame.py"), bd=0, highlightthickness=0)
 fourth_button_x = 260  # Adjust the x-coordinate as needed
 fourth_button_y = 530  # Adjust the y-coordinate as needed
 canvas.create_window(fourth_button_x, fourth_button_y, anchor="center", window=fourth_button)
@@ -229,7 +219,7 @@ fifth_button_image = fifth_button_image.resize((60, 60))
 fifth_button_photo_image = ImageTk.PhotoImage(fifth_button_image)
 
 # Create the fifth button on the canvas with specified coordinates
-fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
+fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 water_current = 55
 fifth_button_x = 520  # Adjust the x-coordinate as needed
 fifth_button_y = 410  # Adjust the y-coordinate as needed
@@ -242,7 +232,7 @@ sixth_button_image = sixth_button_image.resize((60, 60))
 sixth_button_photo_image = ImageTk.PhotoImage(sixth_button_image)
 
 # Create the sixth button on the canvas with specified coordinates
-sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: on_button_click("./popupcodes/WaterPump.png", "Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
+sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: on_button_click( "Game\\Minigames\\Water_pump_minigame"), bd=0, highlightthickness=0)
 sixth_button_x = 550  # Adjust the x-coordinate as needed
 sixth_button_y = 600  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
