@@ -6,7 +6,7 @@ import subprocess
 import time
 
 # Initialize Pygame
-pygame.init()   
+pygame.init()
 
 # Set up display
 width, height = 1000, 1000
@@ -19,7 +19,7 @@ root.title("Game Interface")
 root.attributes('-fullscreen', True)
 
 # Set up colors
-green = "#98F5FF"  
+green = "#98F5FF"
 blue = "#458B00"
 
 # Set up the stat bar dimensions
@@ -40,7 +40,8 @@ food_max = 100
 def draw_water_status():
     # Draw the water stat bar at the top
     bar_fill_width = int(bar_width * (water_current / water_max))
-    canvas.create_rectangle((width - bar_width) // 2, 10, (width - bar_width) // 2 + bar_fill_width, 10 + bar_height, fill=green)
+    canvas.create_rectangle((width - bar_width) // 2, 10, (width - bar_width) // 2 + bar_fill_width, 10 + bar_height,
+                            fill=green)
 
     # Display the water status label
     water_label.config(text="Water: {}/{}".format(water_current, water_max))
@@ -52,7 +53,8 @@ def draw_water_status():
 def draw_food_status():
     # Draw the food stat bar at the top
     bar_fill_width = int(bar_width * (food_current / food_max))
-    canvas.create_rectangle((width - bar_width) // 2, 40, (width - bar_width) // 2 + bar_fill_width, 40 + bar_height, fill=blue)
+    canvas.create_rectangle((width - bar_width) // 2, 40, (width - bar_width) // 2 + bar_fill_width, 40 + bar_height,
+                            fill=blue)
 
     # Display the food status label
     food_label.config(text="Food: {}/{}".format(food_current, food_max))
@@ -73,18 +75,53 @@ def update_statuses():
     root.after(100, update_statuses)
 
 # Function to handle button clicks
-def on_button_click(program_path):
+def on_button_click(minigame_type):
     new_window = tk.Toplevel(root)
- 
 
+    # Run the external Python program when a button is clicked
+    if minigame_type == "food":
+        result = run_food_minigame()
+        update_food(result)
+    elif minigame_type == "water":
+        result = run_water_minigame()
+        update_water(result)
 
-    # Run the external Python program when the water button is clicked
-    if program_path:
-        subprocess.run(["python", program_path])
+def run_food_minigame():
+    # Call the food minigame and get the result
+    # For simplicity, let's assume the result is the amount to increase food
+    # You should replace this with your actual food minigame logic
+    return 10
+
+def run_water_minigame():
+    # Call the water minigame and get the result
+    # For simplicity, let's assume the result is the amount to increase water
+    # You should replace this with your actual water minigame logic
+    return 20
+
+def update_food(amount):
+    # Update the food level in the main game
+    global food_current
+    food_current += amount
+    if food_current > food_max:
+        food_current = food_max
+
+    # Update the food status bar and label
+    draw_food_status()
+
+def update_water(amount):
+    # Update the water level in the main game
+    global water_current
+    water_current += amount
+    if water_current > water_max:
+        water_current = water_max
+
+    # Update the water status bar and label
+    draw_water_status()
 
 # Create a canvas for drawing
 canvas = tk.Canvas(root, width=width, height=height)
 canvas.pack()
+
 
 # Load and resize the map image
 map_image_path = "photos\\Untitled.png"
