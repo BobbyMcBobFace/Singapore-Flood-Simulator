@@ -16,7 +16,7 @@ WHITE = (255, 255, 255)
 
 # Set up the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("FIx Crack Game")
+pygame.display.set_caption("Fix the crack in the pipes!")
 
 # Fonts
 font = pygame.font.Font(None, 36)
