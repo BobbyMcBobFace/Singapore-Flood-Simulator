@@ -36,6 +36,13 @@ water_max = 100
 food_current = 50
 food_max = 100
 
+# Display labels for water and food
+water_label = tk.Label(root, text="Water: {}/{}".format(water_current, water_max), font=font)
+water_label.place(x=10, y=10)
+
+food_label = tk.Label(root, text="Food: {}/{}".format(food_current, food_max), font=font)
+food_label.place(x=10, y=40)
+
 # Function to draw the water status bar and label
 def draw_water_status():
     # Draw the water stat bar at the bottom
@@ -65,9 +72,6 @@ def draw_food_status():
 
     # Schedule the function to run again after 100 milliseconds
     root.after(100, draw_food_status)
-
-
-
 
 # Main game loop
 def update_statuses():
@@ -161,7 +165,7 @@ cargo_canvas = canvas.create_image(250, 670, anchor="center", image=cargo_photo_
 
 cargo1_canvas = canvas.create_image(550, 600, anchor="center", image=cargo_photo_image)
 
-cargo2_canvas = canvas.create_image(60  0, 70, anchor="center", image=cargo_photo_image)
+cargo2_canvas = canvas.create_image(600, 70, anchor="center", image=cargo_photo_image)
 # Load and resize the third aesthetic picture (Airport.png)
 airport_image_path = "./popupcodes/Airport.png"
 airport_image = Image.open(airport_image_path)
@@ -297,5 +301,8 @@ sixth_button_x = 1100  # Adjust the x-coordinate as needed
 sixth_button_y = 400  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
 
+
 # Start Tkinter main loop
+root.after(100, update_statuses)
+
 root.mainloop()
