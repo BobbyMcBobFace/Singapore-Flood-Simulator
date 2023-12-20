@@ -9,7 +9,7 @@ import time
 pygame.init()
 
 # Set up display
-width, height = 1000, 1000
+width, height = 1920, 1080
 
 # Tkinter root window
 root = tk.Tk()
@@ -81,7 +81,7 @@ def update_statuses():
     # Schedule the function to run again after 100 milliseconds
     root.after(100, update_statuses)
 
-# Function to handle button clicks
+# Function to handle button click s
 def on_button_click(minigame_type):
     new_window = tk.Toplevel(root)
 
@@ -101,7 +101,7 @@ def run_food_minigame():
 
 def run_water_minigame():
     # Open the water minigame script and wait for it to finish
-    subprocess.call(["python", "Game\\Minigames\\Water_pump_minigame"])
+    subprocess.call(["python", "Game\\Minigames\\Water_pump_minigame.py"])
 
     return 7
 
@@ -133,7 +133,7 @@ canvas.pack()
 # Load and resize the map image
 map_image_path = "photos\\Untitled.png"
 map_image = Image.open(map_image_path)
-map_image = map_image.resize((1000, 1000))
+map_image = map_image.resize((1550, 850))
 map_photo_image = ImageTk.PhotoImage(map_image)
 
 # Create a canvas for the map image
@@ -146,26 +146,46 @@ ship_image = ship_image.resize((150, 150))
 ship_photo_image = ImageTk.PhotoImage(ship_image)
 
 # Create a canvas for the ship image
-ship_canvas = canvas.create_image(650, 650, anchor="center", image=ship_photo_image)
+ship_canvas = canvas.create_image(930, 650, anchor="center", image=ship_photo_image)
+# Create a canvas for the ship image
+ship1_canvas = canvas.create_image(1030, 650, anchor="center", image=ship_photo_image)
 
 # Load and resize the second aesthetic picture (Cargo.png)
 cargo_image_path = "./popupcodes/Cargo.png"
 cargo_image = Image.open(cargo_image_path)
-cargo_image = cargo_image.resize((200, 200))
+cargo_image = cargo_image.resize((140, 140))
 cargo_photo_image = ImageTk.PhotoImage(cargo_image)
 
 # Create a canvas for the second aesthetic picture
-cargo_canvas = canvas.create_image(150, 670, anchor="center", image=cargo_photo_image)
+cargo_canvas = canvas.create_image(250, 670, anchor="center", image=cargo_photo_image)
 
+cargo1_canvas = canvas.create_image(550, 600, anchor="center", image=cargo_photo_image)
+
+cargo2_canvas = canvas.create_image(60  0, 70, anchor="center", image=cargo_photo_image)
 # Load and resize the third aesthetic picture (Airport.png)
 airport_image_path = "./popupcodes/Airport.png"
 airport_image = Image.open(airport_image_path)
-airport_image = airport_image.resize((200, 200))
+airport_image = airport_image.resize((250, 250))
 airport_photo_image = ImageTk.PhotoImage(airport_image)
 
 # Create a canvas for the third aesthetic picture
-airport_canvas = canvas.create_image(750, 500, anchor="center", image=airport_photo_image)
+airport_canvas = canvas.create_image(1260, 400, anchor="center", image=airport_photo_image)
 
+airport1_image_path = "./popupcodes/Airport.png"
+airport1_image = Image.open(airport_image_path)
+airport1_image = airport_image.resize((90, 90))
+airport1_photo_image = ImageTk.PhotoImage(airport1_image)
+
+# Create a canvas for the third aesthetic picture
+airport1_canvas = canvas.create_image(430, 800, anchor="center", image=airport1_photo_image)
+
+airport2_image_path = "./popupcodes/Airport.png"
+airport2_image = Image.open(airport_image_path)
+airport2_image = airport_image.resize((150, 150))
+airport2_photo_image = ImageTk.PhotoImage(airport2_image)
+
+# Create a canvas for the third aesthetic picture
+airport2_canvas = canvas.create_image(863, 200, anchor="center", image=airport2_photo_image)
 
 # Display the water and food status labels
 water_label = tk.Label(root, text="Water: {}/{}".format(water_current, water_max), font=font)
@@ -205,28 +225,28 @@ root.bind('<Escape>', on_escape_press)
 
 
 # Load and resize the first button image
-button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
-button_image = Image.open(button_image_path).convert("RGBA")
-button_image = button_image.resize((60, 60))
-button_photo_image = ImageTk.PhotoImage(button_image)
+first_button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
+first_button_image = Image.open(first_button_image_path).convert("RGBA")
+first_button_image = first_button_image.resize((60, 60))
+first_button_photo_image = ImageTk.PhotoImage(first_button_image)
 
 
 # Create the first button on the canvas with specified coordinates
-first_button = tk.Button(root, image=button_photo_image, command=lambda: on_button_click( "water"), bd=0, highlightthickness=0)
-first_button_x = 200  
-first_button_y = 500
+first_button = tk.Button(root, image=first_button_photo_image, command=lambda: on_button_click( "food"), bd=0, highlightthickness=0)
+first_button_x = 390  
+first_button_y = 190
 canvas.create_window(first_button_x, first_button_y, anchor="center", window=first_button)
 
 # Load and resize the second button image
-second_button_image_path = "photos\\waterdam.sprite.png"
+second_button_image_path = "photos\\farm.sprite.PNG"
 second_button_image = Image.open(second_button_image_path)
 second_button_image = second_button_image.resize((60, 60))
 second_button_photo_image = ImageTk.PhotoImage(second_button_image)
 
 # Create the second button on the canvas with specified coordinates
-second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("water"), bd=0, highlightthickness=0)
-second_button_x = 330
-second_button_y = 390
+second_button = tk.Button(root, image=second_button_photo_image, command=lambda: on_button_click("food"), bd=0, highlightthickness=0)
+second_button_x = 800
+second_button_y = 290
 canvas.create_window(second_button_x, second_button_y, anchor="center", window=second_button)
 
 # Load and resize the third button image
@@ -237,20 +257,20 @@ third_button_photo_image = ImageTk.PhotoImage(third_button_image)
 
 # Create the third button on the canvas with specified coordinates
 third_button = tk.Button(root, image=third_button_photo_image, command=lambda: on_button_click("food"), bd=0, highlightthickness=0)
-third_button_x = 240  # Adjust the x-coordinate as needed
-third_button_y = 420  # Adjust the y-coordinate as needed
+third_button_x = 330  # Adjust the x-coordinate as needed
+third_button_y = 290  # Adjust the y-coordinate as needed
 canvas.create_window(third_button_x, third_button_y, anchor="center", window=third_button)
 
 # Load and resize the fourth button image (duplicate of the first and third)
-fourth_button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
+fourth_button_image_path = "photos\\waterdam.sprite.png"  # Change this path accordingly
 fourth_button_image = Image.open(fourth_button_image_path)
 fourth_button_image = fourth_button_image.resize((60, 60))
 fourth_button_photo_image = ImageTk.PhotoImage(fourth_button_image)
 
 # Create the fourth button on the canvas with specified coordinates
-fourth_button = tk.Button(root, image=fourth_button_photo_image, command=lambda: on_button_click("food"), bd=0, highlightthickness=0)
-fourth_button_x = 260  # Adjust the x-coordinate as needed
-fourth_button_y = 530  # Adjust the y-coordinate as needed
+fourth_button = tk.Button(root, image=fourth_button_photo_image, command=lambda: on_button_click("water"), bd=0, highlightthickness=0)
+fourth_button_x = 1450  # Adjust the x-coordinate as needed
+fourth_button_y = 240  # Adjust the y-coordinate as needed
 canvas.create_window(fourth_button_x, fourth_button_y, anchor="center", window=fourth_button)
 
 # Load and resize the fifth button image (duplicate of the second)
@@ -261,9 +281,8 @@ fifth_button_photo_image = ImageTk.PhotoImage(fifth_button_image)
 
 # Create the fifth button on the canvas with specified coordinates
 fifth_button = tk.Button(root, image=fifth_button_photo_image, command=lambda: on_button_click("water"), bd=0, highlightthickness=0)
-water_current = 55
 fifth_button_x = 520  # Adjust the x-coordinate as needed
-fifth_button_y = 410  # Adjust the y-coordinate as needed
+fifth_button_y = 500  # Adjust the y-coordinate as needed
 canvas.create_window(fifth_button_x, fifth_button_y, anchor="center", window=fifth_button)
 
 # Load and resize the sixth button image (duplicate of the second)
@@ -274,8 +293,8 @@ sixth_button_photo_image = ImageTk.PhotoImage(sixth_button_image)
 
 # Create the sixth button on the canvas with specified coordinates
 sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: on_button_click( "water"), bd=0, highlightthickness=0)
-sixth_button_x = 550  # Adjust the x-coordinate as needed
-sixth_button_y = 600  # Adjust the y-coordinate as needed
+sixth_button_x = 1100  # Adjust the x-coordinate as needed
+sixth_button_y = 400  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
 
 # Start Tkinter main loop
