@@ -161,7 +161,7 @@ cargo_canvas = canvas.create_image(250, 670, anchor="center", image=cargo_photo_
 
 cargo1_canvas = canvas.create_image(550, 600, anchor="center", image=cargo_photo_image)
 
-cargo2_canvas = canvas.create_image(60  0, 70, anchor="center", image=cargo_photo_image)
+cargo2_canvas = canvas.create_image(600, 70, anchor="center", image=cargo_photo_image)
 # Load and resize the third aesthetic picture (Airport.png)
 airport_image_path = "./popupcodes/Airport.png"
 airport_image = Image.open(airport_image_path)
