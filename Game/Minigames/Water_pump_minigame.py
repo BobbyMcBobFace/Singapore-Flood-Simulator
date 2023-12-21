@@ -76,7 +76,7 @@ def generate_cracks():
         value = random.randint(1, min(total_value, 20))
         x = random.randint(60, 740)
         y = random.randint(490, 520)
-        new_crack = ((x, y), value)  # Added crack values
+        new_crack = ((x, y), value, 3)  # Added crack values and clicks_left
         if not overlaps(new_crack, cracks):
             cracks.append(new_crack)
             total_value -= value
@@ -149,11 +149,18 @@ while running:
                 # Center the hitbox on the crack image
                 clicked_cracks = [crack for crack in cracks if pygame.Rect(crack[0][0] - crack_image.get_width() // 2, crack[0][1] - crack_image.get_height() // 2, crack_image.get_width(), crack_image.get_height()).collidepoint(event.pos)]
                 for crack in clicked_cracks:
-                    water_bar -= crack[1]
-                    remaining_cracks -= 1
+                    x, y = crack[0]
+                    crack_value, clicks_left = crack[1], crack[2]
+                    if clicks_left > 0:
+                        water_bar -= crack_value
+                        clicks_left -= 1
+                        if clicks_left == 0:
+                            remaining_cracks -= 1
+                            if remaining_cracks == 0:
+                                good_job_screen = True
                     cracks.remove(crack)
-                    if remaining_cracks == 0:
-                        good_job_screen = True
+                    if clicks_left > 0:  # Append only if clicks_left is still greater than 0
+                        cracks.append(((x, y), crack_value, clicks_left))
 
     # Calculate elapsed time
     elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
@@ -167,10 +174,6 @@ while running:
     draw_pipe()  # Moved the drawing of the pipe to show outline
     draw_cracks()
 
-    # Display remaining cracks
-    remaining_cracks_text = font.render(f"Cracks Left: {remaining_cracks}", True, WHITE)
-    screen.blit(remaining_cracks_text, (20, 20))
-
     if good_job_screen:
         button_rect = good_job_screen_display()
     elif you_lose_screen:
@@ -179,6 +182,9 @@ while running:
         # Display time left
         time_text = font.render(f"Time Left: {time_left} seconds", True, WHITE)
         screen.blit(time_text, (WIDTH - time_text.get_width() - 20, 20))
+        # Display remaining cracks
+        cracks_left_text = font.render(f"Cracks Left: {remaining_cracks}", True, WHITE)
+        screen.blit(cracks_left_text, (20, 20))
 
     # Update the custom cursor position
     screen.blit(custom_cursor_image, pygame.mouse.get_pos())
