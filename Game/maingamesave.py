@@ -36,6 +36,13 @@ water_max = 100
 food_current = 50
 food_max = 100
 
+# Display labels for water and food
+water_label = tk.Label(root, text="Water: {}/{}".format(water_current, water_max), font=font)
+water_label.place(x=10, y=10)
+
+food_label = tk.Label(root, text="Food: {}/{}".format(food_current, food_max), font=font)
+food_label.place(x=10, y=40)
+
 # Function to draw the water status bar and label
 def draw_water_status():
     # Draw the water stat bar at the bottom
@@ -65,9 +72,6 @@ def draw_food_status():
 
     # Schedule the function to run again after 100 milliseconds
     root.after(100, draw_food_status)
-
-
-
 
 # Main game loop
 def update_statuses():
@@ -199,31 +203,6 @@ food_label.place(x=10, y=40)
 escape_press_count = 0
 last_escape_press_time = 0
 
-# Function to handle Escape key presses
-def on_escape_press(event):
-    global escape_press_count, last_escape_press_time
-
-    current_time = time.time()
-
-    # Check if the last Escape press was within a short time frame
-    if current_time - last_escape_press_time < 1:
-        escape_press_count += 1
-    else:
-        escape_press_count = 1  # Reset the count if it's been too long
-
-    last_escape_press_time = current_time
-
-    # Check if Escape key is pressed three times in quick succession
-    if escape_press_count == 3:
-        # Ask the user if they want to close the program
-        result = messagebox.askquestion("Exit", "Do you want to close the program?")
-        if result == "yes":
-            root.destroy()  # Close the Tkinter window
-
-# Bind the Escape key to the callback function
-root.bind('<Escape>', on_escape_press)
-
-
 # Load and resize the first button image
 first_button_image_path = "photos\\farm.sprite.PNG"  # Change this path accordingly
 first_button_image = Image.open(first_button_image_path).convert("RGBA")
@@ -297,5 +276,31 @@ sixth_button_x = 1100  # Adjust the x-coordinate as needed
 sixth_button_y = 400  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
 
+def on_escape_press(event):
+    global escape_press_count, last_escape_press_time
+
+    current_time = time.time()
+
+    # Check if the last Escape press was within a short time frame
+    if current_time - last_escape_press_time < 1:
+        escape_press_count += 1
+    else:
+        escape_press_count = 1  # Reset the count if it's been too long
+
+    last_escape_press_time = current_time
+
+    # Check if Escape key is pressed three times in quick succession
+    if escape_press_count == 3:
+        # Ask the user if they want to close the program
+        result = messagebox.askquestion("Exit", "Do you want to close the program?")
+        if result == "yes":
+            root.destroy()  # Close the Tkinter window
+
+# Bind the Escape key to the callback function
+root.bind('<Escape>', on_escape_press)
+
+
 # Start Tkinter main loop
+root.after(100, update_statuses)
+
 root.mainloop()
