@@ -13,7 +13,6 @@ width, height = 1920, 1080
 
 # Tkinter root window
 root = tk.Tk()
-root.title("Game Interface")
 
 # Set the window to full screen
 root.attributes('-fullscreen', True)
@@ -203,7 +202,6 @@ food_label.place(x=10, y=40)
 escape_press_count = 0
 last_escape_press_time = 0
 
-# Function to handle Escape key presses
 def on_escape_press(event):
     global escape_press_count, last_escape_press_time
 
@@ -300,7 +298,6 @@ sixth_button = tk.Button(root, image=sixth_button_photo_image, command=lambda: o
 sixth_button_x = 1100  # Adjust the x-coordinate as needed
 sixth_button_y = 400  # Adjust the y-coordinate as needed
 canvas.create_window(sixth_button_x, sixth_button_y, anchor="center", window=sixth_button)
-
 
 # Start Tkinter main loop
 root.after(100, update_statuses)
