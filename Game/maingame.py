@@ -134,7 +134,7 @@ canvas.pack()
 
 
 # Load and resize the map image
-map_image_path = "photos\\Untitled.png"
+map_image_path = "photos\\map.png"
 map_image = Image.open(map_image_path)
 map_image = map_image.resize((1550, 850))
 map_photo_image = ImageTk.PhotoImage(map_image)
