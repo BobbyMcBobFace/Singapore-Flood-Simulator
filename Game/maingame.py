@@ -143,7 +143,7 @@ map_photo_image = ImageTk.PhotoImage(map_image)
 canvas.create_image(0, 0, anchor="nw", image=map_photo_image)
 
 # Load and resize the ship image
-ship_image_path = "./popupcodes/Ship.png"
+ship_image_path = "photos\\cargoship.sprite.PNG"
 ship_image = Image.open(ship_image_path)
 ship_image = ship_image.resize((150, 150))
 ship_photo_image = ImageTk.PhotoImage(ship_image)
@@ -154,7 +154,7 @@ ship_canvas = canvas.create_image(930, 650, anchor="center", image=ship_photo_im
 ship1_canvas = canvas.create_image(1030, 650, anchor="center", image=ship_photo_image)
 
 # Load and resize the second aesthetic picture (Cargo.png)
-cargo_image_path = "./popupcodes/Cargo.png"
+cargo_image_path = "photos\\cargoloading.sprite.PNG"
 cargo_image = Image.open(cargo_image_path)
 cargo_image = cargo_image.resize((140, 140))
 cargo_photo_image = ImageTk.PhotoImage(cargo_image)
@@ -166,7 +166,7 @@ cargo1_canvas = canvas.create_image(550, 600, anchor="center", image=cargo_photo
 
 cargo2_canvas = canvas.create_image(600, 70, anchor="center", image=cargo_photo_image)
 # Load and resize the third aesthetic picture (Airport.png)
-airport_image_path = "./popupcodes/Airport.png"
+airport_image_path = "photos\\airport.sprite.PNG"
 airport_image = Image.open(airport_image_path)
 airport_image = airport_image.resize((250, 250))
 airport_photo_image = ImageTk.PhotoImage(airport_image)
