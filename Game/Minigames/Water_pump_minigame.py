@@ -14,8 +14,6 @@ RED = (255, 0, 0)
 GREY = (169, 169, 169)  # Solid grey
 WHITE = (255, 255, 255)
 
-time_limit = 50  # Adjust the value as needed
-
 # Set up the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Fix the crack in the pipes!")
@@ -47,6 +45,7 @@ custom_cursor_image = pygame.transform.scale(custom_cursor_image_original, (48, 
 
 # Set the custom cursor
 pygame.mouse.set_visible(False)  # Hide the default cursor
+
 
 # Function to draw the pipe at the bottom of the window
 def draw_pipe():
@@ -117,29 +116,28 @@ def you_lose_screen_display():
 
     return button_rect  # Return the button rectangle for click detection
 
-# Function to display start screen
-def start_screen_display():
-    screen.fill(LIGHT_BLUE)
-    text = big_font.render("Click to Start", True, DARK_BLUE)  # Adjusted text color
-    screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
-
-# Variable to track whether the game has started
-game_started = False
-
 # Main game loop
 running = True
 clock = pygame.time.Clock()
+
+generate_cracks()
+
+# Set the start time for the timer
+start_time = pygame.time.get_ticks()
+
+# Time limit in seconds
+time_limit = 50
+
+# Variables for win/lose screens
+good_job_screen = False
+you_lose_screen = False
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if not game_started:
-                game_started = True
-                start_time = pygame.time.get_ticks()  # Set the start time for the timer
-                generate_cracks()  # Start generating cracks when the game begins
-            elif good_job_screen:
+            if good_job_screen:
                 button_rect = good_job_screen_display()
                 if button_rect.collidepoint(event.pos):
                     running = False  # Exit the game when the button is clicked
@@ -164,6 +162,13 @@ while running:
                     if clicks_left > 0:  # Append only if clicks_left is still greater than 0
                         cracks.append(((x, y), crack_value, clicks_left))
 
+    # Calculate elapsed time
+    elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
+    time_left = max(0, time_limit - elapsed_time)
+
+    if time_left == 0 and not good_job_screen:
+        you_lose_screen = True
+
     screen.fill(LIGHT_BLUE)
 
     draw_pipe()  # Moved the drawing of the pipe to show outline
@@ -173,12 +178,8 @@ while running:
         button_rect = good_job_screen_display()
     elif you_lose_screen:
         button_rect = you_lose_screen_display()
-    elif not game_started:
-        start_screen_display()
     else:
         # Display time left
-        elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
-        time_left = max(0, time_limit - elapsed_time)
         time_text = font.render(f"Time Left: {time_left} seconds", True, WHITE)
         screen.blit(time_text, (WIDTH - time_text.get_width() - 20, 20))
         # Display remaining cracks
