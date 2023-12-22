@@ -174,7 +174,7 @@ airport_photo_image = ImageTk.PhotoImage(airport_image)
 # Create a canvas for the third aesthetic picture
 airport_canvas = canvas.create_image(1260, 400, anchor="center", image=airport_photo_image)
 
-airport1_image_path = "./popupcodes/Airport.png"
+airport1_image_path = "photos\\airport.sprite.PNG"
 airport1_image = Image.open(airport_image_path)
 airport1_image = airport_image.resize((90, 90))
 airport1_photo_image = ImageTk.PhotoImage(airport1_image)
@@ -182,7 +182,7 @@ airport1_photo_image = ImageTk.PhotoImage(airport1_image)
 # Create a canvas for the third aesthetic picture
 airport1_canvas = canvas.create_image(430, 800, anchor="center", image=airport1_photo_image)
 
-airport2_image_path = "./popupcodes/Airport.png"
+airport2_image_path = "photos\\airport.sprite.PNG"
 airport2_image = Image.open(airport_image_path)
 airport2_image = airport_image.resize((150, 150))
 airport2_photo_image = ImageTk.PhotoImage(airport2_image)
