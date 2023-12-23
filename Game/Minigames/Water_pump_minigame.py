@@ -36,11 +36,11 @@ good_job_screen = False
 you_lose_screen = False
 
 # Load and shrink crack image
-crack_image_original = pygame.image.load("photos\\CRACK-removebg-preview.png")  # Replace with your actual file path
+crack_image_original = pygame.image.load("photos\\crack.png")  # Replace with your actual file path
 crack_image = pygame.transform.scale(crack_image_original, (int(crack_image_original.get_width() * 0.1), int(crack_image_original.get_height() * 0.1)))
 
 # Load custom cursor image and make it larger
-custom_cursor_image_original = pygame.image.load("photos\\adhesive-electrical-tape-cartoon-illustration-vector-removebg-preview.png")  # Replace with your custom cursor image path
+custom_cursor_image_original = pygame.image.load("photos\\tape.png")  # Replace with your custom cursor image path
 custom_cursor_image = pygame.transform.scale(custom_cursor_image_original, (48, 48))  # Adjust the size here
 
 # Set the custom cursor
